@@ -1,0 +1,4 @@
+*.o
+*.exe
+.DS_Store
+*.wav
