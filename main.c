@@ -1,31 +1,54 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <math.h>
 
 #include "instruments.h"
+#include "loadscore.h"
 #include "note.h"
 
 #define SIZE_OF_HEADER 36
 #define SAMPLE_RATE 44100
-#define SECONDS 8
-#define SAMPLES SAMPLE_RATE*SECONDS
 
-uint8_t data[SAMPLES];
-int num_notes = 1;
+uint8_t* data;
+int samples = 0;
 int next_note = 0;
+float duration;
 
-extern note score[];
-extern int score_len;
+note* score;
+int score_len;
 
 note *notes;
+char *inputname  = "score.cscore";
+char *outputname = "out.wav";
 
 void synthesize();
 void writewav();
+void badargs();
 
-int main()
+char *exename;
+
+void badargs() {
+   printf("usage: %s <score filename> <output filename>\n"
+	   "       %s <score filename> (assumes 'out.wav')\n"
+	   "       %s (assumes 'score.cscore') (assumes 'out.wav')\n",
+	  exename, exename, exename);
+   exit(1);
+}
+
+int main(int argc, char *argv[])
 {
+  exename = argv[0];
+  if (argc >= 3) {
+    badargs();
+  }
+  score = loadscore(inputname, &score_len, &duration);
+  samples = duration*SAMPLE_RATE;
+  data = malloc(samples);
   synthesize();
-  writewav("test.wav");
+  writewav(outputname);
+  free(data);
+  free(score);
   return 0;
 }
 
@@ -33,7 +56,7 @@ void synthesize()
 {
   int i;
   float t, note_t;
-  for (i = 0; i < SAMPLES; i++) {
+  for (i = 0; i < samples; i++) {
     t = i/(float)SAMPLE_RATE;
     /* when a note beings, add it to the list of playing notes */
     while (next_note < score_len && score[next_note].begin < t) {
@@ -96,7 +119,7 @@ void writewav(const char* filename)
 
   /* header*/
   fputs("RIFF", f);                              /* main chunk       */
-  write(f, 4, SIZE_OF_HEADER + SAMPLES);         /* chunk size       */
+  write(f, 4, SIZE_OF_HEADER + samples);         /* chunk size       */
   fputs("WAVE", f);                              /* file format      */
   fputs("fmt ", f);                              /* format chunk     */
   write(f, 4, 16);                               /* size of subchunk */
@@ -108,7 +131,7 @@ void writewav(const char* filename)
   write(f, 2, 8);                                /* bits per sample  */
   fputs("data", f);                              /* data chunk       */
   /* body */
-  fwrite(data, 1, SAMPLES, f);                   /* actual audio     */
+  fwrite(data, 1, samples, f);                   /* actual audio     */
 
   fclose(f);
 }
