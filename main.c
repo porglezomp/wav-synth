@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <math.h>
+
 #include "instruments.h"
+#include "note.h"
 
 #define SIZE_OF_HEADER 36
 #define SAMPLE_RATE 44100
@@ -12,19 +14,9 @@ uint8_t data[SAMPLES];
 int num_notes = 1;
 int next_note = 0;
 
-typedef struct note_t note;
-struct note_t {
-  int hz;
-  float begin, duration;
-  note *previous, *next;
-};
+extern note score[];
+extern int score_len;
 
-note score[] = {
-  {261, 0.0, 7.0, NULL, NULL},
-  {330, 0.0, 7.0, NULL, NULL},
-  {392, 0.0, 7.0, NULL, NULL}
-};
-int score_len = sizeof(score)/sizeof(note);
 note *notes;
 
 void synthesize();
