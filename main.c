@@ -5,9 +5,27 @@
 
 #define SIZE_OF_HEADER 36
 #define SAMPLE_RATE 44100
-#define SECONDS 4
+#define SECONDS 8
 #define SAMPLES SAMPLE_RATE*SECONDS
+
 uint8_t data[SAMPLES];
+int num_notes = 1;
+int next_note = 0;
+
+typedef struct note_t note;
+struct note_t {
+  int hz;
+  float begin, duration;
+  note *previous, *next;
+};
+
+note score[] = {
+  {261, 0.0, 7.0, NULL, NULL},
+  {330, 0.0, 7.0, NULL, NULL},
+  {392, 0.0, 7.0, NULL, NULL}
+};
+int score_len = sizeof(score)/sizeof(note);
+note *notes;
 
 void synthesize();
 void writewav();
@@ -15,14 +33,46 @@ void writewav();
 int main()
 {
   synthesize();
-  writewav();
+  writewav("test.wav");
   return 0;
 }
 
 void synthesize()
 {
-  for (int i = 0; i < SAMPLES; i++) {
-    data[i] = instrument(i/(float)SAMPLE_RATE)*127+127;
+  int i;
+  float t, note_t;
+  for (i = 0; i < SAMPLES; i++) {
+    t = i/(float)SAMPLE_RATE;
+    /* when a note beings, add it to the list of playing notes */
+    while (next_note < score_len && score[next_note].begin < t) {
+      /* push it to the front of a linked list */
+      score[next_note].next = notes;
+      notes = &score[next_note];
+      next_note++;
+    }
+
+    note *n = notes;
+    float accum = 0.0;
+    while (1) {
+      if (n == NULL) break;
+      note_t = t - n->begin;
+      accum += instrument(note_t, n->hz);
+
+      /* once a note has ended, unlink it from the list */
+      if (note_t > n->duration) {
+	if (n->previous)
+	  n->previous->next = n->next;
+	if (n->next)
+	  n->next->previous = n->previous;
+	if (n == notes)
+	  notes = n->next;
+	n->next = NULL; n->previous = NULL;
+      }
+
+      n = n->next;
+    }
+
+    data[i] = accum*127 + 127;
   }
 }
 
@@ -48,9 +98,9 @@ void write(FILE* f, int size, int32_t arg)
   }
 }
 
-void writewav() 
+void writewav(const char* filename) 
 {
-  FILE* f = fopen("test.wav", "w");
+  FILE* f = fopen(filename, "w");
 
   /* header*/
   fputs("RIFF", f);                              /* main chunk       */

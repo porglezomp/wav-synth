@@ -1,7 +1,7 @@
 SRCS = main.c instruments.c
 OBJS = $(SRCS:.c=.o)
 EXE  = Sound.exe
-FLAGS = -std=c99 -Wall -Werror -pedantic -D_USE_MATH_DEFINES
+FLAGS = -std=c99 -Wall -Werror -pedantic -D_USE_MATH_DEFINES -g
 
 all: $(EXE)
 
