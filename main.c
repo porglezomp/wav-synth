@@ -1,14 +1,12 @@
 #include <stdio.h>
+#include <stdint.h>
 #include <math.h>
-
-typedef __uint8_t uint8;
-typedef __int16_t int16;
-typedef __int32_t int32;
+#include "instruments.h"
 
 const int size_of_header = 36;
 const int sample_rate = 44100;
 const int samples = sample_rate*4;
-uint8 data[samples];
+uint8_t data[samples];
 
 void synthesize();
 void writewav();
@@ -20,36 +18,30 @@ int main()
   return 0;
 }
 
-float sound(float t)
-{
-  float f = sin(sqrt(t)*M_PI*440)*exp(-t*2);
-  return f;
-}
-
 void synthesize()
 {
   for (int i = 0; i < samples; i++) {
-    data[i] = sound(i/(float)sample_rate)*127+127;
+    data[i] = instrument(i/(float)sample_rate)*127+127;
   }
 }
 
-void write(FILE* f, int size, int32 arg)
+void write(FILE* f, int size, int32_t arg)
 {
-  uint8 x;
-  int16 y;
-  int32 z;
+  uint8_t x;
+  int16_t y;
+  int32_t z;
 
   switch (size) {
   case 1:
-    x = (uint8) arg;
+    x = (uint8_t) arg;
     fwrite(&x, size, 1, f);
     break;
   case 2:
-    y = (int16) arg;
+    y = (int16_t) arg;
     fwrite(&y, size, 1, f);
     break;
   case 4:
-    z = (int32) arg;
+    z = (int32_t) arg;
     fwrite(&z, size, 1, f);
     break;
   }

@@ -1,4 +1,4 @@
-SRCS = main.c
+SRCS = main.c instruments.c
 OBJS = $(SRCS:.c=.o)
 EXE  = Sound.exe
 
