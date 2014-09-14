@@ -36,9 +36,6 @@ To convert a .pyscore to a .cscore, run `python converter.py <pyscore file> [<ou
 
 To produce a wav file, run `./Sound.exe <input cscore> [<output WAV>]`
 
-Colophon
-========
-
 Credits
 -------
 
