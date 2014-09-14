@@ -9,7 +9,11 @@ note* loadscore(const char *name, int *length, float *duration) {
   float hz, start, len;
   FILE *f;
   
-  f= fopen(name, "r");
+  f = fopen(name, "r");
+  if (f == NULL) {
+    printf("Error opening file '%s'\n", name);
+    return NULL;
+  }
   
   fscanf(f, "%i notes\n", length);
   //  double tmp;

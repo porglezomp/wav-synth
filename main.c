@@ -42,7 +42,14 @@ int main(int argc, char *argv[])
   if (argc >= 3) {
     badargs();
   }
+  if (argc > 1) {
+    inputname = argv[1];
+  }
+  if (argc > 2) {
+    outputname = argv[2];
+  }
   score = loadscore(inputname, &score_len, &duration);
+  if (score == NULL) return 1;
   samples = duration*SAMPLE_RATE;
   data = malloc(samples);
   synthesize();

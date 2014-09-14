@@ -1,0 +1,84 @@
+# Style info
+title: Mario
+composer: Koji Kondo
+arranger: Joseph Karam
+# Important!!!
+meter: 4/4
+tempo: half = 200
+# Last comment
+
+---
+q1   F3# q , E4  q
+q2   F3# q , E4  q
+
+q4   F3# q , E4  q
+---
+q2   F3# q , C4  q
+q3   F3# q , E4  q
+---
+q1   G3  q , B3  q , G4  q
+---
+q1   G3  q
+---
+# Line 2
+q1   E3  q , C4  q
+
+q4   C3  q , G3  q
+---
+q3   G2  q , E3  q
+---
+q2   C3  q , A3  q
+
+q4   D3  q , B3  q
+---
+q2   D3b q , B3b q
+q3   C3  q , A3  q
+---
+# Line 3
+ht1  D3  ht, G3  ht
+ht2  G3  ht, E4  ht
+ht3  B3  ht, G4  ht
+---
+q1   C4  q , A4  q
+
+q3   A3  q , F4  q
+q4   B3  q , G4  q
+---
+q2   A3  q , E4  q
+
+q4   E3  q , C4  q
+---
+q1   F3  q , D4  q
+q2   D3  q , B3  q
+---
+# Line 4
+q1   E3  q , C4  q
+
+q4   C3  q , G3  q
+---
+q3   G3  q , E3  q
+---
+q2   C3  q , A3  q
+
+q4   E3  q , B3  q
+---
+q2   E3b q , B3b q
+q3   D3  q , A3  q
+---
+# Line 5
+ht1  D3  ht, G3  ht
+ht2  G3  ht, E4  ht
+ht3  B3  ht, G4  ht
+---
+q1   C4  q , A4  q
+
+q3   A3  q , F4  q
+q4   B3  q , G4  q
+---
+q2   A3  q , E4  q
+
+q4   E3  q , C4  q
+---
+q1   F3  q , D4  q
+q2   E3  q , B3  q
+---
