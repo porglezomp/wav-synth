@@ -1,4 +1,4 @@
-wav-synth
+WAV Synth
 =========
 
 WAV Synth is a package for synthesizing music from a music format.
