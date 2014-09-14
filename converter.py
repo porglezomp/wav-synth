@@ -32,7 +32,7 @@ notes_map = {"c": 0, "d": 2, "e": 4, "f": 5, "g": 7, "a": 9, "b": 11}
 def frequency(note):
     base = 0
     octave = 0
-    accidental = 0
+    accidental = None
     if len(note) > 0:
         base = notes_map[note[0]]
     if len(note) > 1:
@@ -50,6 +50,18 @@ def frequency(note):
                 accidental = 1
         elif note[2] == "x":
             accidental = 2
+        elif note[2] == "n":
+            accidental = 0
+
+    # Handle key signature
+    if accidental is None:
+        if note[0].upper() in key:
+            if "#" in key:
+                accidental = 1
+            else:
+                accidental = -1
+        else:
+            accidental = 0
 
     n = base+accidental
     if n > 11 or n < 0:
@@ -64,6 +76,7 @@ measure_length = 0
 beat_length = 0
 quarter_length = 0
 measure = 0
+key = ""
 
 
 def meter(m):
@@ -90,6 +103,22 @@ def tempo(t):
           a quarter {2}".format(measure_length,
                                 beat_length, quarter_length))
 
+
+def key_gen(t):
+    global key
+    flats = "BEADGCF"
+    sharps = "FCGDAEB"
+    use = ""
+    if "b" in t:
+        use = flats
+        key = "b"
+    else:
+        use = sharps
+        key = "#"
+    key += use[:len(t)]
+    print("Key: " + key[1:] + " " + ("flat" if "b" in key else "sharp"))
+
+
 note_lengths = {'w': 4, 'h': 2, 'q': 1, 'e': 0.5, 's': 0.25}
 
 
@@ -111,10 +140,11 @@ def gen_start(s):
     time += (measure-1)*measure_length
     return time
 
-handlers = ["meter", "tempo"]
+handlers = ["meter", "tempo", "key"]
 handler_functions = {
     "meter": meter,
-    "tempo": tempo
+    "tempo": tempo,
+    "key": key_gen
 }
 values = {}
 

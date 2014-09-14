@@ -1,0 +1,28 @@
+title: Whatever
+composer: Caleb Jones
+tempo: quarter = 120
+meter: 4/4
+
+---
+q1    C3  q
+q2    D3  q
+q3    F3  h
+q4    E3  q
+---
+q1    G3  q
+q2    B3  q
+q3+e1 A3  e
+q3+e2 B3  e
+q4    C4  q
+---
+q1    C4  q
+e2    D4  e
+e3    E4  e
+e4    G4  e
+e5    F4  e
+q3    G4  e
+q4    A4  q
+---
+q1    A4  q
+q2    G4  q
+---

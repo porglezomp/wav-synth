@@ -1,11 +1,10 @@
-# Style info
+# Optional
 title: Mario
 composer: Koji Kondo
 arranger: Joseph Karam
-# Important!!!
+# The following tags are required
 meter: 4/4
 tempo: half = 200
-# Last comment
 
 ---
 q1   F3# q , E4  q
@@ -128,3 +127,4 @@ q2   E3  q , G3# q
 q3   F3  q , A3  q
 q4   G3b q , C4  q
 ---
+# Do more!

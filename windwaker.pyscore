@@ -1,0 +1,36 @@
+title: Opening Title from Wind Waker
+composer: Koji Kondo
+arranger: Rachel Bell
+tempo: quarter = 120
+meter: 3/4
+key: bbbbb
+# http://herbalcell.com/static/sheets/legend-of-zelda-wind-waker/opening-title.pdf
+
+---
+h1     E3 h. , D4 h.
+# middle note , A3 h. 
+---
+h1     E4 h.
+---
+h1     E3 h. , D4 h.
+# middle note , A3 h.
+---
+h1     A3 h.
+q3+qt1 A4 qt
+q3+qt2 A4 et
+---
+q1     A4 qt
+q1+qt2 D5 et
+q2     F5 qt
+q2+qt2 E5 et
+q3     D5 qt
+q3+qt2 C5 et
+---
+q1     D5 qt
+q1+et2 B4 et
+q2     G4 qt
+q2+et2 C5 et
+q3+et1 A4 et
+q3+et2 D5 et
+q3+et3 B4 et
+---
