@@ -18,5 +18,5 @@ clean:
 	rm $(EXE)
 	rm $(CSCORE)
 
-%.cscore: %.pyscore
+%.cscore: %.pyscore converter.py
 	python converter.py $<

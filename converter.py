@@ -207,6 +207,11 @@ with open(infile, "r") as f:
             measure += 1
             continue
 
+        if "restart" in line:  # Multiple parts
+            finalize_measure()
+            measure = 0
+            continue
+
         line = re.split(r'\s+', line, 1)
 
         start = line[0]
@@ -231,9 +236,11 @@ with open(infile, "r") as f:
                 end_time = start_time + note_len
 
 end_padding = 1.0
+end_time += end_padding
+notes.sort()
 print("%.3f seconds long" % end_time)
 with open(outfile, "w") as f:
     f.write("%i notes\n" % len(notes))
-    f.write("%.3f seconds\n\n" % (end_time + end_padding))
+    f.write("%.3f seconds\n\n" % (end_time))
     for note in notes:
         f.write("%.2f %.3f %.3f\n" % (note[2], note[0], note[1]))
