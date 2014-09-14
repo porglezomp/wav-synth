@@ -82,3 +82,49 @@ q4   E3  q , C4  q
 q1   F3  q , D4  q
 q2   E3  q , B3  q
 ---
+# Page 2
+# Line 6
+q3   E4  q , G4  q
+q4   E4b q , G4b q
+---
+q1   D4  q , F4  q
+q2   B3  q , D4# q
+
+q4   C4  q , E4  q
+---
+q2   E3  q , G3# q
+q3   F3  q , A3  q
+q4   G3  q , C4  q
+---
+q2   C3  q , A3  q
+q3   E3  q , C4  q
+q4   F3  q , D4  q
+---
+# Line 7
+q3   E4  q , G4  q
+q4   E4b q , G4b q
+---
+q1   D4  q , F4  q
+q2   B3  q , E4# q
+
+q4   C4  q , E4  q
+---
+q2   F4  q , G4  q , C5 q
+
+q4   F4  q , G4  q , C5 q
+---
+q1   F4  q , G4  q , C5 q
+---
+# Line 8
+q3   E4  q , G4  q
+q4   E4b q , G4b q
+---
+q1   D4  q , F4  q
+q2   B3  q , E4# q
+
+q4   C4  q , E4  q
+---
+q2   E3  q , G3# q
+q3   F3  q , A3  q
+q4   G3b q , C4  q
+---

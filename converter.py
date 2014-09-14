@@ -14,7 +14,7 @@ if len(sys.argv) > 1:
         if ".pyscore" in infile:
             outfile = infile.replace(".pyscore", ".cscore")
         else:
-            outfile = infile + ".out"
+            outfile = sys.argv[1] + ".out"
     else:
         print("File '%s' does not exist." % sys.argv[1])
         exit(1)
@@ -22,10 +22,11 @@ if len(sys.argv) > 2:
     outfile = sys.argv[2]
 
 # Frequencies for octave 8
-basis = [4186.01, 4434.92, 4698.63, 4978.03, 
+basis = [4186.01, 4434.92, 4698.63, 4978.03,
          5274.04, 5587.65, 5919.91, 6271.93,
          6644.88, 7040.00, 7458.62, 7902.13]
 notes_map = {"c": 0, "d": 2, "e": 4, "f": 5, "g": 7, "a": 9, "b": 11}
+
 
 # Generate a frequency based on a note description
 def frequency(note):
@@ -45,7 +46,7 @@ def frequency(note):
         elif note[2] == "#":
             if len(note) > 3 and note[3] == "#":
                 accidental = 2
-            else: 
+            else:
                 accidental = 1
         elif note[2] == "x":
             accidental = 2
@@ -64,6 +65,7 @@ beat_length = 0
 quarter_length = 0
 measure = 0
 
+
 def meter(m):
     global beats, getsbeat
     m = m.split("/")
@@ -71,22 +73,26 @@ def meter(m):
     getsbeat = int(m[1].strip())
     print("%i/%i" % (beats, getsbeat))
 
+
 def tempo(t):
     global beat_length, measure_length, quarter_length
     names = {"whole": 1, "half": 2, "quarter": 4}
     t = t.split("=")
     n = names[t[0].strip()]
     time = int(t[1].strip())
-    seconds = 60.0/time # Seconds per n
-    seconds *= n # Seconds per whole note
+    seconds = 60.0/time  # Seconds per n
+    seconds *= n  # Seconds per whole note
     beat_length = seconds/getsbeat
     measure_length = beat_length * beats
     quarter_length = beat_length * 4.0 / getsbeat
 
-    print("a measure lasts %f seconds, a beat %f, a quarter %f" % 
-            (measure_length, beat_length, quarter_length))
+    print("a measure lasts {0} seconds, a beat {1},\
+          a quarter {2}".format(measure_length,
+                                beat_length, quarter_length))
 
 note_lengths = {'w': 4, 'h': 2, 'q': 1, 'e': 0.5, 's': 0.25}
+
+
 def gen_start(s):
     time = 0
     for item in s.split("+"):
@@ -96,7 +102,7 @@ def gen_start(s):
 
         if "t" in item:
             # print(triplet.group())
-            n *= 2/3.0;
+            n *= 2/3.0
         count = int(re.search("\d", item).group())
         # print(count)
         time += (count-1)*n*quarter_length
@@ -115,6 +121,7 @@ values = {}
 notes = []
 measure_notes = []
 
+
 def finalize_measure():
     global measure_notes, notes
     measure_notes.sort()
@@ -130,9 +137,11 @@ with open(infile, "r") as f:
     while True:
         line = f.readline()
         line_no += 1
-        if len(line) == 0: exit(0) # EOF
+        if len(line) == 0:
+            exit(0)  # EOF
         line = line.strip()
-        if len(line) == 0 or line[0] == "#": continue # Line is a comment
+        if len(line) == 0 or line[0] == "#":
+            continue  # Line is a comment
 
         if ":" in line:
             pair = line.split(":")
@@ -158,11 +167,12 @@ with open(infile, "r") as f:
         line = f.readline().lower()
         if line == "":
             finalize_measure()
-            break # EOF
+            break  # EOF
         line = line.strip()
-        if len(line) == 0 or line[0] == "#": continue # Comment
+        if len(line) == 0 or line[0] == "#":
+            continue  # Comment
 
-        if "---" in line: # Measure break
+        if "---" in line:  # Measure break
             finalize_measure()
             measure += 1
             continue
