@@ -5,8 +5,9 @@ arranger: Joseph Karam
 # The following tags are required
 meter: 4/4
 tempo: half = 200
+# http://www.mariopiano.com/Mario-Sheet-Music-Overworld-Main-Theme.pdf
 
----
+--- Line 1
 q1   F3# q , E4  q
 q2   F3# q , E4  q
 
@@ -18,8 +19,7 @@ q3   F3# q , E4  q
 q1   G3  q , B3  q , G4  q
 ---
 q1   G3  q
----
-# Line 2
+--- Line 2
 q1   E3  q , C4  q
 
 q4   C3  q , G3  q
@@ -32,8 +32,7 @@ q4   D3  q , B3  q
 ---
 q2   D3b q , B3b q
 q3   C3  q , A3  q
----
-# Line 3
+--- Line 3
 ht1  D3  ht, G3  ht
 ht2  G3  ht, E4  ht
 ht3  B3  ht, G4  ht
@@ -49,8 +48,7 @@ q4   E3  q , C4  q
 ---
 q1   F3  q , D4  q
 q2   D3  q , B3  q
----
-# Line 4
+--- Line 4
 q1   E3  q , C4  q
 
 q4   C3  q , G3  q
@@ -63,8 +61,7 @@ q4   E3  q , B3  q
 ---
 q2   E3b q , B3b q
 q3   D3  q , A3  q
----
-# Line 5
+--- Line 5
 ht1  D3  ht, G3  ht
 ht2  G3  ht, E4  ht
 ht3  B3  ht, G4  ht
@@ -80,9 +77,7 @@ q4   E3  q , C4  q
 ---
 q1   F3  q , D4  q
 q2   E3  q , B3  q
----
-# Page 2
-# Line 6
+--- Page 2 Line 1
 q3   E4  q , G4  q
 q4   E4b q , G4b q
 ---
@@ -98,8 +93,7 @@ q4   G3  q , C4  q
 q2   C3  q , A3  q
 q3   E3  q , C4  q
 q4   F3  q , D4  q
----
-# Line 7
+--- Line 2
 q3   E4  q , G4  q
 q4   E4b q , G4b q
 ---
@@ -113,8 +107,7 @@ q2   F4  q , G4  q , C5 q
 q4   F4  q , G4  q , C5 q
 ---
 q1   F4  q , G4  q , C5 q
----
-# Line 8
+--- Line 3
 q3   E4  q , G4  q
 q4   E4b q , G4b q
 ---
@@ -127,4 +120,30 @@ q2   E3  q , G3# q
 q3   F3  q , A3  q
 q4   G3b q , C4  q
 ---
-# Do more!
+q2   C3  q , A3  q
+q3   E3  q , C4  q
+q4   F3  q , D4  q
+---
+q3   A3b q , E4b q
+---
+q2   F3  q , D4  q
+---
+q1   E3  q , C4  q
+---
+--- Page 3 Line 1
+
+
+# Bass Line
+restart
+--- Page 1 Line 1
+q1   D3  q
+q2   D3  q
+
+q4   D3  q
+---
+q2   D3  q
+q3   D3  q
+---
+---
+q1   G3  q
+--- Line 2
