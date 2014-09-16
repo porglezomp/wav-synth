@@ -29,11 +29,11 @@ void badargs();
 char *exename;
 
 void badargs() {
-   printf("usage: %s <score filename> <output filename>\n"
-	   "       %s <score filename> (assumes 'out.wav')\n"
-	   "       %s (assumes 'score.cscore') (assumes 'out.wav')\n",
-	  exename, exename, exename);
-   exit(1);
+  printf("usage: %s <score filename> <output filename>\n"
+         "       %s <score filename> (assumes 'out.wav')\n"
+         "       %s (assumes 'score.cscore') (assumes 'out.wav')\n",
+         exename, exename, exename);
+  exit(1);
 }
 
 int main(int argc, char *argv[])
@@ -66,10 +66,13 @@ void synthesize()
   for (i = 0; i < samples; i++) {
     t = i/(float)SAMPLE_RATE;
     /* when a note beings, add it to the list of playing notes */
-    while (next_note < score_len && score[next_note].begin < t) {
+    while (next_note < score_len && score[next_note].begin <= t) {
       /* push it to the front of a linked list */
       score[next_note].next = notes;
       notes = &score[next_note];
+      if (notes->next) {
+        notes->next->previous = notes;
+      }
       next_note++;
     }
 
@@ -79,19 +82,22 @@ void synthesize()
       if (n == NULL) break;
       note_t = t - n->begin;
       accum += instrument(note_t, n->hz);
+      note *next = n->next;
 
       /* once a note has ended, unlink it from the list */
       if (note_t > n->duration) {
-	if (n->previous)
-	  n->previous->next = n->next;
-	if (n->next)
-	  n->next->previous = n->previous;
-	if (n == notes)
-	  notes = n->next;
-	n->next = NULL; n->previous = NULL;
+        if (n->previous)
+          n->previous->next = n->next;
+        if (n->next)
+          n->next->previous = n->previous;
+        if (notes == n)
+          notes = n->next;
+
+        /* set the current links to NULL */
+        n->next = NULL; n->previous = NULL;
       }
 
-      n = n->next;
+      n = next;
     }
 
     data[i] = accum*127 + 127;
