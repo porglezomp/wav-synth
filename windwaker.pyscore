@@ -7,7 +7,7 @@ key: bbbbb
 # http://herbalcell.com/static/sheets/legend-of-zelda-wind-waker/opening-title.pdf
 
 # Melody
---- Page 1 Line 1
+---: Page 1 Line 1
 ---
 ---
 ---
@@ -127,11 +127,155 @@ q3+et3 C5 et
 --- Page 2 Line 1 (20)
 q1     D5 q
 q2     D5 q
+q3     A4 qt
+q3+qt2 A4 et
 ---
+et1    G4 et
+et2    F4 et
+et3    E4 et
+q2     F4 qt
+q2+qt2 D4 et
+q3+et1 C4 et
+q3+et2 D4 et
+q3+et3 E4 et
+---
+et1    A4 et
+et2    D4 et
+et3    D4 et
+et4    G4 et
+et5    D4 et
+et6    D4 et
+q3     F4 qt
+q3+qt2 F4 et
+--- Line 2
+et1    G4 et
+et2    A4 et
+et3    B4 et
+et4    B4 et
+et5    G4 et
+et6    E4 et
+q3     A4 qt
+q3+qt2 A4 et
+---
+et1    G4 et
+et2    F4 et
+et3    D4 et
+et4    E4 et
+et5    G4 et
+et6    E4 et
+q3     E4 qt
+q3+qt2 E4 et
+--- Line 3 (25)
+et1    D4 et
+et2    C4 et
+et3    D4 et
+q2     E4 qt
+q2+qt2 E4 et
+et7    A4 et
+et8    E4 et
+et9    C4 et
+---
+et1    G4 et
+et2    D4 et
+et3    D4 et
+q2     F4 qt
+q2+qt2 F4 et
+et7    E4 et
+et8    C4 et
+et9    E4 et
+--- Line 4
+et1    D4 et
+et2    B3 et
+et3    D4 et
+et4    G4 et
+et5    A4 et
+et6    B4 et
+et7    F4 et
+et8    D4 et
+et9    F4 et
+---
+q1     E4 q
+q2+et1 E4 et 
+q2+et2 F4 et
+q2+et3 E4 et
+q3     A4 qt
+q3+qt2 A4 et
+--- Line 5
+et1    G4 et
+et2    F4 et
+et3    E4 et
+q2     F4 qt
+q2+qt2 D4 et
+et7    C4 et
+et8    D4 et
+et9    E4 et
+--- (30)
+et1    A4 et
+et2    D4 et
+et3    D4 et
+et4    G4 et
+et5    D4 et
+et6    D4 et
+q3     F4 qt
+q3+qt2 F4 et
+--- Line 6
+et1    G4 et
+et2    A4 et
+et3    B4 et
+et4    B4 et
+et5    G4 et
+et6    E4 et
+q3     A4 qt
+q3+qt2 A4 et
+---
+et1    G4 et
+et2    F4 et
+et3    D4 et
+et4    E4 et
+et5    F4 et
+et6    E4 et
+q3     E4 qt
+q3+qt2 E4 et
+--- Line 7
+et1    D4 et
+et2    C4 et
+et3    D4 et
+q2     E4 qt
+q2+qt2 E4 et
+et7    A4 et
+et8    E4 et
+et9    C4 et
+---
+et1    G4 et
+et2    D4 et
+et3    D4 et
+q2     F4 qt
+q2+qt2 F4 et
+et7    E4 et
+et8    C4 et
+et9    E4 et
+--- Line 8
+et1    D4 et
+et2    B3 et
+et3    D4 et
+et4    G4 et
+et5    A4 et
+et6    B4 et
+et7    F4 et
+et8    D4 et
+et9    F4 et
+---
+# Pitches
+q1     E4 q
+q2     E4 qt
+q2+qt2 A4 et
+q3     A3 qt
+q3+qt2 A3 et
+:---
 
 # Bass
 restart
---- Page 1 Line 1
+---: Page 1 Line 1
 h1     E3 h. , A3 h. , D4 h.
 ---
 h1     E4 h.
@@ -139,13 +283,90 @@ h1     E4 h.
 h1     E3 h. , A3 h. , D4 h.
 ---
 h1     A3 h.
-
 --- Line 2 (5)
-#h1     E3 h. , A3 h. , D4 h.
+h1     E3 h. , A3 h. , D4 h.
 ---
-#h1     E4 h.
+h1     E4 h.
 ---
-#h1     E3 h. , A3 h. , D4 h.
+h1     E3 h. , A3 h. , D4 h.
+--- Line 3
+h1     A3 h.
 ---
-#h1     A3 h.
+h1     E3 h. , A3 h. , D4 h.
 ---
+h1     E4 h.
+--- Line 4
+h1     E3 h. , A3 h. , D4 h.
+---
+h1     A3 h.
+---
+h1     E3  h , A3  h , D4  h , E4 h
+q3     F4  q
+--- Line 5
+q1     E3  q , D4 q
+q2     A3  q
+q3     A3  q
+---
+h1     E3  h , A3  h , D4  h
+q3     E4  q
+---
+q1     A3  q
+q2     A3  q
+q3     A3  q
+--- Line 6
+h1     E3  h , A3  h , D4  h , E4 h
+q3     F4  q
+---
+q1     E3  q , D4 q
+q2     A3  q
+q3     A3  q
+---
+q1     E3  q , A3  q , D4  q
+q2     C4  q
+q3     B3  q
+--- Page 2 Line 1
+h1     E3 h. , A3 h.
+---
+h1     E3 h. , A3 h. , D4 h.
+---
+h1     E4 h.
+--- Line 2
+h1     E3 h. , A3 h. , D4 h.
+---
+h1     A3 h.
+--- Line 3
+h1     E3 h. , A3 h. , D4 h.
+---
+h1     E4 h.
+--- Line 4
+h1     E3 h. , A3 h. , D4 h.
+---
+h1     A3 h.
+--- Line 5
+h1     E3  h , A3  h , D4  h , E4  h
+q3     F4  q
+---
+q1     E3  q , D4  q
+q2     A3  q
+q3     A3  q
+--- Line 6
+h1     E3  h , A3  h , D4  h
+q3     F4  q
+---
+q1     A3  q
+q2     A3  q
+q3     A3  q
+--- Line 7
+h1     E3  h , A3  h , D4  h , E4  h
+q3     F4  q
+---
+q1     E3  q , D4  q
+q2     A3  q
+q3     A3  q
+--- Line 8
+q1     E3  q , A3  q , D4  q
+q2     C4  q
+q3     B3  q
+---
+h1     E3 h. , A3 h.
+:---
