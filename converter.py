@@ -150,13 +150,34 @@ values = {}
 
 notes = []
 measure_notes = []
-
+repeat_notes = []
+repeating = False
+was_repeating = False
+repeat_offset = 0.0
 
 def finalize_measure():
-    global measure_notes, notes
+    global measure_notes, notes, repeat_notes, repeat_offset
     measure_notes.sort()
     notes.extend(measure_notes)
+    if repeating:
+        repeat_notes.extend(measure_notes)
+        repeat_offset += measure_length
+    elif was_repeating:
+        rnotes = [(x[0]+repeat_offset, x[1], x[2]) for x in repeat_notes]
+        notes.extend(rnotes)
+        repeat_notes = []
     measure_notes = []
+
+def handle_measure_mark(line):
+    global measure, repeating, repeat_offset, was_repeating
+    finalize_measure()
+    measure += 1
+    if "---:" in line and not repeating:
+        repeating = True
+        repeat_offset = 0
+    elif ":---" in line and repeating:
+        repeating = False
+        was_repeating = True
 
 line_no = 0
 end_time = 0
@@ -173,13 +194,13 @@ with open(infile, "r") as f:
         if len(line) == 0 or line[0] == "#":
             continue  # Line is a comment
 
+        if "---" in line:
+            handle_measure_mark(line)
+            break
+
         if ":" in line:
             pair = line.split(":")
             values[pair[0].strip()] = pair[1].strip()
-
-        if "---" in line:
-            measure += 1
-            break
 
     ##############################
     # Process header information #
@@ -203,8 +224,7 @@ with open(infile, "r") as f:
             continue  # Comment
 
         if "---" in line:  # Measure break
-            finalize_measure()
-            measure += 1
+            handle_measure_mark(line)
             continue
 
         if "restart" in line:  # Multiple parts
@@ -213,6 +233,9 @@ with open(infile, "r") as f:
             continue
 
         line = re.split(r'\s+', line, 1)
+        if len(line) == 1:
+            print("error on line {0}: missing notes".format(line_no))
+            continue
 
         start = line[0]
         start_time = gen_start(start)
@@ -232,12 +255,15 @@ with open(infile, "r") as f:
             # print(elements[1], base_len, note_len)
             measure_notes.append((start_time, note_len, pitch))
             # print(start_time)
-            if start_time + note_len > end_time:
-                end_time = start_time + note_len
 
+notes.sort()
+end_time
+for note in notes:
+    start_time, note_len, _ = note
+    if start_time + note_len > end_time:
+        end_time = start_time + note_len
 end_padding = 1.0
 end_time += end_padding
-notes.sort()
 print("%.3f seconds long" % end_time)
 with open(outfile, "w") as f:
     f.write("%i notes\n" % len(notes))
