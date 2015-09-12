@@ -4,10 +4,10 @@
 #include <math.h>
 
 #include "instruments.h"
+#include "wavwriter.h"
 #include "loadscore.h"
 #include "note.h"
 
-#define SIZE_OF_HEADER 36
 #define SAMPLE_RATE 44100
 
 uint8_t* data;
@@ -23,7 +23,6 @@ char *inputname  = "score.cscore";
 char *outputname = "out.wav";
 
 void synthesize();
-void writewav();
 void badargs();
 
 char *exename;
@@ -53,7 +52,7 @@ int main(int argc, char *argv[])
   samples = duration*SAMPLE_RATE;
   data = malloc(samples);
   synthesize();
-  writewav(outputname);
+  writewav(data, samples, SAMPLE_RATE, outputname);
   free(data);
   free(score);
   return 0;
@@ -102,49 +101,4 @@ void synthesize()
 
     data[i] = accum*127 + 127;
   }
-}
-
-void write(FILE* f, int size, int32_t arg)
-{
-  uint8_t x;
-  int16_t y;
-  int32_t z;
-
-  switch (size) {
-  case 1:
-    x = (uint8_t) arg;
-    fwrite(&x, size, 1, f);
-    break;
-  case 2:
-    y = (int16_t) arg;
-    fwrite(&y, size, 1, f);
-    break;
-  case 4:
-    z = (int32_t) arg;
-    fwrite(&z, size, 1, f);
-    break;
-  }
-}
-
-void writewav(const char* filename) 
-{
-  FILE* f = fopen(filename, "w");
-
-  /* header*/
-  fputs("RIFF", f);                              /* main chunk       */
-  write(f, 4, SIZE_OF_HEADER + samples);         /* chunk size       */
-  fputs("WAVE", f);                              /* file format      */
-  fputs("fmt ", f);                              /* format chunk     */
-  write(f, 4, 16);                               /* size of subchunk */
-  write(f, 2, 1);                                /* format (1 = PCM) */
-  write(f, 2, 1);                                /* # of channels    */
-  write(f, 4, SAMPLE_RATE);                      /* sample rate      */
-  write(f, 4, SAMPLE_RATE);                      /* byte rate        */
-  write(f, 2, 1);                                /* block align      */
-  write(f, 2, 8);                                /* bits per sample  */
-  fputs("data", f);                              /* data chunk       */
-  /* body */
-  fwrite(data, 1, samples, f);                   /* actual audio     */
-
-  fclose(f);
 }
